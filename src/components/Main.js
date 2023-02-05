@@ -15,14 +15,6 @@ const handleAddPlaceClick = () => {
     document.querySelector('.popup_type_add-element').classList.add('popup_opened');
 }
 
- {/* Добавьте императивные обработчики
-Чтобы добавить первую интерактивность, а заодно проверить, 
-правильно ли вы портировали разметку попапов, внутри компонента Main добавьте следующие обработчики:
-handleEditAvatarClick
-handleEditProfileClick
-handleAddPlaceClick
-Здесь мы немного схитрим: внутри этих обработчиков временно используйте привычный императивный подход 
-(с querySelector и classList.add), чтобы задавать CSS-класс popup_is-opened элементу нужного попапа.*/}
   return (
     <main classNameName="content">
       <section className="profile">
