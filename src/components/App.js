@@ -4,13 +4,40 @@ import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
+import ImagePopup from "./ImagePopup";
 
 function App() {
+  const [onEditProfile, setOnEditProfile] = React.useState(false);
+  const [onEditAvatar, setOnEditAvatar] = React.useState(false);
+  const [onAddPlace, setOnAddPlace] = React.useState(false);
+
+  const handleEditProfileClick = () => {
+    setOnEditProfile(true);
+  };
+
+  const handleEditAvatarClick = () => {
+    setOnEditAvatar(true);
+  };
+
+  const handleAddPlaceClick = () => {
+    setOnAddPlace(true);
+  };
+
+  const closeAllPopups = () => {
+    setOnEditProfile(false);
+    setOnEditAvatar(false);
+    setOnAddPlace(false);
+  }
+
   return (
     <div className="app">
       <div className="page">
         <Header />
-        <Main />
+        <Main
+          isEditProfilePopupOpen={handleEditProfileClick}
+          isAddPlacePopupOpen={handleEditAvatarClick}
+          isEditAvatarPopupOpen={handleAddPlaceClick}
+        />
         <Footer />
 
         {/* Popup 1 редактирование профиля */}
@@ -18,6 +45,8 @@ function App() {
           title="Редактировать профиль"
           name="edit-profile"
           buttonText="Сохранить"
+          isOpen={onEditProfile}
+          onClose={closeAllPopups} 
           children={
             <>
               <form
@@ -61,6 +90,8 @@ function App() {
           title="Новое место"
           name="add-element"
           buttonText="Создать"
+          isOpen={onEditAvatar}
+          onClose={closeAllPopups} 
           children={
             <>
               <form
@@ -102,6 +133,8 @@ function App() {
           title="Обновить аватар"
           name="update-avatar"
           buttonText="Сохранить"
+          isOpen={onAddPlace}
+          onClose={closeAllPopups} 
           children={
             <>
               <form
