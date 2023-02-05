@@ -27,7 +27,7 @@ function App() {
     setOnEditProfile(false);
     setOnEditAvatar(false);
     setOnAddPlace(false);
-  }
+  };
 
   return (
     <div className="app">
@@ -46,44 +46,37 @@ function App() {
           name="edit-profile"
           buttonText="Сохранить"
           isOpen={onEditProfile}
-          onClose={closeAllPopups} 
-          children={
-            <>
-              <form
-                name="popup-form-profile"
-                className="popup__form"
-                novalidate
-              >
-                <label className="popup__label">
-                  <input
-                    id="userName-input"
-                    name="name"
-                    type="text"
-                    value="Жак-Ив Кусто"
-                    className="popup__input popup__input_type_name"
-                    minlength="2"
-                    maxlength="40"
-                    required
-                  />
-                  <span className="popup__input-error userName-input-error"></span>
-                </label>
-                <label className="popup__label">
-                  <input
-                    id="useJob-input"
-                    name="about"
-                    type="text"
-                    value="Исследователь океана"
-                    className="popup__input popup__input_type_job"
-                    minlength="2"
-                    maxlength="200"
-                    required
-                  />
-                  <span className="popup__input-error useJob-input-error"></span>
-                </label>
-              </form>
-            </>
-          }
-        />
+          onClose={closeAllPopups}
+        >
+          <form name="popup-form-profile" className="popup__form" noValidate>
+            <label className="popup__label">
+              <input
+                id="userName-input"
+                name="name"
+                type="text"
+                defaultValue="Жак-Ив Кусто"
+                className="popup__input popup__input_type_name"
+                minLength="2"
+                maxLength="40"
+                required
+              />
+              <span className="popup__input-error userName-input-error"></span>
+            </label>
+            <label className="popup__label">
+              <input
+                id="useJob-input"
+                name="about"
+                type="text"
+                defaultValue="Исследователь океана"
+                className="popup__input popup__input_type_job"
+                minLength="2"
+                maxLength="200"
+                required
+              />
+              <span className="popup__input-error useJob-input-error"></span>
+            </label>
+          </form>
+        </PopupWithForm>
 
         {/* Popup 2 добавление фото */}
         <PopupWithForm
@@ -91,42 +84,35 @@ function App() {
           name="add-element"
           buttonText="Создать"
           isOpen={onEditAvatar}
-          onClose={closeAllPopups} 
-          children={
-            <>
-              <form
-                name="popup-form-profile"
-                className="popup__form"
-                novalidate
-              >
-                <label className="popup__label">
-                  <input
-                    id="imageName-input"
-                    name="name"
-                    type="text"
-                    placeholder="Название"
-                    className="popup__input popup__input_type_image-name"
-                    minlength="2"
-                    maxlength="30"
-                    required
-                  />
-                  <span className="popup__input-error  imageName-input-error"></span>
-                </label>
-                <label className="popup__label">
-                  <input
-                    id="imageLink-input"
-                    name="link"
-                    type="url"
-                    placeholder="Ссылка на картинку"
-                    className="popup__input popup__input_type_image-link"
-                    required
-                  />
-                  <span className="popup__input-error imageLink-input-error"></span>
-                </label>
-              </form>
-            </>
-          }
-        />
+          onClose={closeAllPopups}
+        >
+          <form name="popup-form-profile" className="popup__form" noValidate>
+            <label className="popup__label">
+              <input
+                id="imageName-input"
+                name="name"
+                type="text"
+                placeholder="Название"
+                className="popup__input popup__input_type_image-name"
+                minLength="2"
+                maxLength="30"
+                required
+              />
+              <span className="popup__input-error  imageName-input-error"></span>
+            </label>
+            <label className="popup__label">
+              <input
+                id="imageLink-input"
+                name="link"
+                type="url"
+                placeholder="Ссылка на картинку"
+                className="popup__input popup__input_type_image-link"
+                required
+              />
+              <span className="popup__input-error imageLink-input-error"></span>
+            </label>
+          </form>
+        </PopupWithForm>
 
         {/* Popup 3 обновление аватара */}
         <PopupWithForm
@@ -134,30 +120,26 @@ function App() {
           name="update-avatar"
           buttonText="Сохранить"
           isOpen={onAddPlace}
-          onClose={closeAllPopups} 
-          children={
-            <>
-              <form
-                name="popup-form-profile"
-                className="popup__form"
-                buttonText="Сохранить"
-                novalidate
-              >
-                <label className="popup__label">
-                  <input
-                    id="avatar-input"
-                    name="avatar"
-                    type="url"
-                    placeholder="Ссылка на картинку"
-                    className="popup__input popup__input_type_avatar"
-                    required
-                  />
-                  <span className="popup__input-error avatar-input-error"></span>
-                </label>
-              </form>
-            </>
-          }
-        />
+          onClose={closeAllPopups}
+        >
+          <form
+            name="popup-form-profile"
+            className="popup__form"
+            noValidate
+          >
+            <label className="popup__label">
+              <input
+                id="avatar-input"
+                name="avatar"
+                type="url"
+                placeholder="Ссылка на картинку"
+                className="popup__input popup__input_type_avatar"
+                required
+              />
+              <span className="popup__input-error avatar-input-error"></span>
+            </label>
+          </form>
+        </PopupWithForm>
         {/* Popup 4 удaление карточки */}
         <PopupWithForm title="" name="" buttonText="Да" children={<></>} />
 

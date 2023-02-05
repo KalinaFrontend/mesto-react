@@ -4,7 +4,7 @@ import "../index.css";
 function Main({isEditProfilePopupOpen, isAddPlacePopupOpen, isEditAvatarPopupOpen}) {
 
   return (
-    <main classNameName="content">
+    <main className="content">
       <section className="profile">
         <div className="profile__card">
           <button className="profile__avatar-edit-button" type="button" onClick={isEditAvatarPopupOpen}>
