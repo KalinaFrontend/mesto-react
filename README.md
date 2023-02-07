@@ -15,7 +15,6 @@
 * Webpack
 * git/github
 * Figma 
-* 
 
 Этот проект был переписан на React.js с проекта [**Mesto**](https://github.com/KalinaFrontend/Mesto).
 ------
