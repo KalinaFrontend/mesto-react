@@ -15,7 +15,6 @@ function Main({
   const [cards, setCards] = React.useState([]);
 
 
-  React.useEffect(() => {
     api.getUserInfo().then((data) => {
       setUserName(data.name);
       setUserDescription(data.about);
@@ -24,19 +23,15 @@ function Main({
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
       });
-  }, []);
  
-  React.useEffect(() => {
     api
       .getCard()
       .then((res) => {
-        console.log(res);
         setCards(res);
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
       });
-  }, []);
 
   return (
     <main className="content">
