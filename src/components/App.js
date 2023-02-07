@@ -10,6 +10,7 @@ function App() {
   const [onEditProfile, setOnEditProfile] = React.useState(false);
   const [onEditAvatar, setOnEditAvatar] = React.useState(false);
   const [onAddPlace, setOnAddPlace] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState('');
 
   const handleEditProfileClick = () => {
     setOnEditProfile(true);
@@ -23,10 +24,15 @@ function App() {
     setOnAddPlace(true);
   };
 
+  const handleCardClick = (card) => {
+    setSelectedCard(card);
+  }
+
   const closeAllPopups = () => {
     setOnEditProfile(false);
     setOnEditAvatar(false);
     setOnAddPlace(false);
+    setSelectedCard('');
   };
 
   return (
@@ -37,7 +43,9 @@ function App() {
           isEditProfilePopupOpen={handleEditProfileClick}
           isAddPlacePopupOpen={handleEditAvatarClick}
           isEditAvatarPopupOpen={handleAddPlaceClick}
+          isImagePopupOpen={handleCardClick}
         />
+
         <Footer />
 
         {/* Popup 1 редактирование профиля */}
@@ -143,20 +151,7 @@ function App() {
         {/* Popup 4 удaление карточки */}
         <PopupWithForm title="" name="" buttonText="Да" children={<></>} />
 
-        {/* Template */}
-        <template className="template" id="template">
-          <li className="elements__item">
-            <button type="button" className="elements__delete"></button>
-            <img src="#" alt="" className="elements__item-image" />
-            <div className="elements__item-card">
-              <h3 className="elements__item-title"></h3>
-              <div className="elemants__item-likes">
-                <button type="button" className="elements__item-like"></button>
-                <p className="elements__item-number-likes"></p>
-              </div>
-            </div>
-          </li>
-        </template>
+        <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
       </div>
     </div>
   );
