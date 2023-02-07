@@ -10,7 +10,7 @@ function App() {
   const [onEditProfile, setOnEditProfile] = React.useState(false);
   const [onEditAvatar, setOnEditAvatar] = React.useState(false);
   const [onAddPlace, setOnAddPlace] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState('');
+  const [selectedCard, setSelectedCard] = React.useState("");
 
   const handleEditProfileClick = () => {
     setOnEditProfile(true);
@@ -26,13 +26,13 @@ function App() {
 
   const handleCardClick = (card) => {
     setSelectedCard(card);
-  }
+  };
 
   const closeAllPopups = () => {
     setOnEditProfile(false);
     setOnEditAvatar(false);
     setOnAddPlace(false);
-    setSelectedCard('');
+    setSelectedCard("");
   };
 
   return (
@@ -130,11 +130,7 @@ function App() {
           isOpen={onAddPlace}
           onClose={closeAllPopups}
         >
-          <form
-            name="popup-form-profile"
-            className="popup__form"
-            noValidate
-          >
+          <form name="popup-form-profile" className="popup__form" noValidate>
             <label className="popup__label">
               <input
                 id="avatar-input"
@@ -151,7 +147,7 @@ function App() {
         {/* Popup 4 удaление карточки */}
         <PopupWithForm title="" name="" buttonText="Да" children={<></>} />
 
-        <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
+        <ImagePopup card={selectedCard} onClose={closeAllPopups} />
       </div>
     </div>
   );
