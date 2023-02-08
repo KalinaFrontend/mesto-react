@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "../index.css";
 import api from "../utils/Api";
 import Card from "./Card";
@@ -9,29 +9,32 @@ function Main({
   isEditAvatarPopupOpen,
   isImagePopupOpen,
 }) {
-  const [userName, setUserName] = React.useState("");
-  const [userDescription, setUserDescription] = React.useState("");
-  const [userAvatar, setUserAvatar] = React.useState("");
-  const [cards, setCards] = React.useState([]);
+  const [userName, setUserName] = useState("");
+  const [userDescription, setUserDescription] = useState("");
+  const [userAvatar, setUserAvatar] = useState("");
+  const [cards, setCards] = useState([]);
 
-
-    api.getUserInfo().then((data) => {
-      setUserName(data.name);
-      setUserDescription(data.about);
-      setUserAvatar(data.avatar);
-    })
-      .catch((err) => {
-        console.log(`Ошибка: ${err}`);
-      });
- 
-    api
-      .getCard()
-      .then((res) => {
-        setCards(res);
-      })
-      .catch((err) => {
-        console.log(`Ошибка: ${err}`);
-      });
+  useEffect(() => { 
+    api.getUserInfo().then((data) => { 
+      setUserName(data.name); 
+      setUserDescription(data.about); 
+      setUserAvatar(data.avatar); 
+    }) 
+      .catch((err) => { 
+        console.log(`Ошибка: ${err}`); 
+      }); 
+  }, []); 
+  
+  useEffect(() => { 
+    api 
+      .getCards() 
+      .then((res) => { 
+        setCards(res); 
+      }) 
+      .catch((err) => { 
+        console.log(`Ошибка: ${err}`); 
+      }); 
+  }, []); 
 
   return (
     <main className="content">
@@ -67,11 +70,11 @@ function Main({
       </section>
       <section className="elements" aria-label="Фотографии">
         <ul className="elements__items">
-        {cards.map((card) => {
-          return (
-            <Card key={card._id} card={card} onCardClick={isImagePopupOpen}/>
-          );
-        })}
+          {cards.map((card) => {
+            return (
+              <Card key={card._id} card={card} onCardClick={isImagePopupOpen} />
+            );
+          })}
         </ul>
       </section>
     </main>

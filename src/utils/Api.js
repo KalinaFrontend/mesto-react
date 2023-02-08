@@ -36,7 +36,7 @@ class Api {
     }).then(this._checkResponse);
   }
 
-  getCard() {
+  getCards() {
     return fetch(`https://mesto.nomoreparties.co/v1/${this._cohort}/cards`, {
       method: "GET",
       headers: {

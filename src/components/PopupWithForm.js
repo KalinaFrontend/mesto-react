@@ -3,7 +3,6 @@ import "../index.css";
 
 function PopupWithForm({ title, name, buttonText, isOpen, onClose, children }) {
   return (
-    <>
       <div
         className={
           isOpen
@@ -18,13 +17,14 @@ function PopupWithForm({ title, name, buttonText, isOpen, onClose, children }) {
             onClick={onClose}
           ></button>
           <h2 className="popup__content-title">{title}</h2>
+          <form name="popup-form-profile" className="popup__form" noValidate>
           {children}
           <button type="submit" className="popup__save-button ">
             {buttonText}
           </button>
+          </form>
         </div>
       </div>
-    </>
   );
 }
 
