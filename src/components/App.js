@@ -6,9 +6,10 @@ import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import api from "../utils/Api";
+import EditProfilePopup from "./EditProfilePopup";
 
 function App() {
-  const [onEditProfile, setOnEditProfile] = useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [onEditAvatar, setOnEditAvatar] = useState(false);
   const [onAddPlace, setOnAddPlace] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
@@ -38,7 +39,7 @@ function App() {
   }, []); 
 
   const handleEditProfileClick = () => {
-    setOnEditProfile(true);
+    setIsEditProfilePopupOpen(true);
   };
 
   const handleCardDelete  = (_id) => {
@@ -58,7 +59,7 @@ function App() {
   };
 
   const closeAllPopups = () => {
-    setOnEditProfile(false);
+    setIsEditProfilePopupOpen(false);
     setOnEditAvatar(false);
     setOnAddPlace(false);
     setSelectedCard(null);
@@ -92,40 +93,7 @@ function App() {
         <Footer />
 
         {/* Popup 1 редактирование профиля */}
-        <PopupWithForm
-          title="Редактировать профиль"
-          name="edit-profile"
-          buttonText="Сохранить"
-          isOpen={onEditProfile}
-          onClose={closeAllPopups}
-        >
-          <label className="popup__label">
-            <input
-              id="userName-input"
-              name="name"
-              type="text"
-              defaultValue="Жак-Ив Кусто"
-              className="popup__input popup__input_type_name"
-              minLength="2"
-              maxLength="40"
-              required
-            />
-            <span className="popup__input-error userName-input-error"></span>
-          </label>
-          <label className="popup__label">
-            <input
-              id="useJob-input"
-              name="about"
-              type="text"
-              defaultValue="Исследователь океана"
-              className="popup__input popup__input_type_job"
-              minLength="2"
-              maxLength="200"
-              required
-            />
-            <span className="popup__input-error useJob-input-error"></span>
-          </label>
-        </PopupWithForm>
+        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} /> 
 
         {/* Popup 2 добавление фото */}
         <PopupWithForm
