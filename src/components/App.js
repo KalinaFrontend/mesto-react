@@ -41,6 +41,10 @@ function App() {
     setOnEditProfile(true);
   };
 
+  const handleCardDelete  = (_id) => {
+    api.deleteCard(_id);
+  }
+
   const handleEditAvatarClick = () => {
     setOnEditAvatar(true);
   };
@@ -81,6 +85,7 @@ function App() {
           isEditAvatarPopupOpen={handleAddPlaceClick}
           isImagePopupOpen={handleCardClick}
           isCardLike={handleCardLike}
+          handleCardDelete={handleCardDelete}
           cards={cards}
         />
 

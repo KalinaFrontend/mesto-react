@@ -11,6 +11,7 @@ function Main({
   isImagePopupOpen,
   isCardLike,
   cards,
+  handleCardDelete,
 }) {
 
   const currentUser = React.useContext(CurrentUserContext);
@@ -53,7 +54,7 @@ function Main({
         <ul className="elements__items">
           {cards.map((card) => {
             return (
-              <Card key={card._id} card={card} onCardClick={isImagePopupOpen} onLikeClick={isCardLike}/>
+              <Card key={card._id} card={card} onCardClick={isImagePopupOpen} onLikeClick={isCardLike} onCardDelete={handleCardDelete}/>
             );
           })}
         </ul>
