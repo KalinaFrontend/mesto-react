@@ -1,13 +1,29 @@
 import React from "react";
+import {CurrentUserContext} from '../contexts/CurrentUserContext';
 
-function Card({ card, onCardClick }) {
+function Card({ card, onCardClick , onLikeClick}) {
+  const currentUser = React.useContext(CurrentUserContext);
+  const isOwn = card.owner._id === currentUser._id;
+  const isLiked = card.likes.some(i => i._id === currentUser._id);
+  const cardLikeButtonClassName = ( 
+    `elements__item-like ${isLiked && 'element__item-like_type_active'}` 
+  );; 
+
   const handleCardClick = () => {
     onCardClick(card);
   };
 
+  /* const handleDeleteClick = () => {
+    onCardDelete(card);
+  }; */
+  const handleCardLike = () => {
+    onLikeClick(card);
+  };
+
+
   return (
     <li className="elements__item">
-      <button type="button" className="elements__delete"></button>
+      {isOwn && <button type="button" className="elements__delete" /*onClick={handleDeleteClick}*/ />} 
       <img
         src={card.link}
         alt={card.name}
@@ -17,7 +33,7 @@ function Card({ card, onCardClick }) {
       <div className="elements__item-card">
         <h3 className="elements__item-title">{card.name}</h3>
         <div className="elemants__item-likes">
-          <button type="button" className="elements__item-like"></button>
+          <button type="button" className={cardLikeButtonClassName} onClick={handleCardLike}></button>
           <p className="elements__item-number-likes">{card.likes.length}</p>
         </div>
       </div>

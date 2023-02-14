@@ -99,6 +99,18 @@ class Api {
     ).then(this._checkResponse);
   }
 
+  changeLikeCardStatus(cardId, isLiked) {
+    
+    return fetch(`https://mesto.nomoreparties.co/v1/${this._cohort}/cards/${cardId}/likes`, {
+      method: `${!isLiked ? 'DELETE' : 'PUT'}`,
+      headers: {
+        authorization: this._token,
+        "Content-Type": "application/json",
+      },
+    })
+      .then(this._checkResponse);
+  }
+
   updateAvatar(data) {
     return fetch(
       `https://mesto.nomoreparties.co/v1/${this._cohort}/users/me/avatar`,

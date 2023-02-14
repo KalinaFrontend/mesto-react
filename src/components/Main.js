@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {CurrentUserContext} from '../contexts/CurrentUserContext';
 import "../index.css";
 import api from "../utils/Api";
 import Card from "./Card";
@@ -8,40 +9,20 @@ function Main({
   isAddPlacePopupOpen,
   isEditAvatarPopupOpen,
   isImagePopupOpen,
+  isCardLike,
+  cards,
 }) {
-  const [userName, setUserName] = useState("");
-  const [userDescription, setUserDescription] = useState("");
-  const [userAvatar, setUserAvatar] = useState("");
-  const [cards, setCards] = useState([]);
 
-  useEffect(() => { 
-    api.getUserInfo().then((data) => { 
-      setUserName(data.name); 
-      setUserDescription(data.about); 
-      setUserAvatar(data.avatar); 
-    }) 
-      .catch((err) => { 
-        console.log(`Ошибка: ${err}`); 
-      }); 
-  }, []); 
+  const currentUser = React.useContext(CurrentUserContext);
   
-  useEffect(() => { 
-    api 
-      .getCards() 
-      .then((res) => { 
-        setCards(res); 
-      }) 
-      .catch((err) => { 
-        console.log(`Ошибка: ${err}`); 
-      }); 
-  }, []); 
+
 
   return (
     <main className="content">
       <section className="profile">
         <div className="profile__card">
           <img
-            src={userAvatar}
+            src={currentUser.avatar}
             alt="Аватар пользователя"
             className="profile__avatar"
           />
@@ -52,14 +33,14 @@ function Main({
           ></button>
           <div className="profile__info">
             <div className="profile__info-block">
-              <h1 className="profile__info-name">{userName}</h1>
+              <h1 className="profile__info-name">{currentUser.name}</h1>
               <button
                 type="button"
                 className="profile__edit-button"
                 onClick={isEditProfilePopupOpen}
               ></button>
             </div>
-            <p className="profile__job">{userDescription}</p>
+            <p className="profile__job">{currentUser.about}</p>
           </div>
         </div>
         <button
@@ -72,7 +53,7 @@ function Main({
         <ul className="elements__items">
           {cards.map((card) => {
             return (
-              <Card key={card._id} card={card} onCardClick={isImagePopupOpen} />
+              <Card key={card._id} card={card} onCardClick={isImagePopupOpen} onLikeClick={isCardLike}/>
             );
           })}
         </ul>
