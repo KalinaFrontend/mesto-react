@@ -66,13 +66,22 @@ function App() {
     setSelectedCard(null);
   };
 
-  function handleUpdateUser(form) {
-    api.setUserInfo(form)
+  function handleUpdateUser(data) {
+    api.setUserInfo(data)
     .then((newUserInfo) => {
       setCurrentUser(newUserInfo);
       closeAllPopups();
     })
     .catch(console.error);
+  }
+
+  function handleUpdateAvatar(avatar){
+    api.updateAvatar(avatar)
+    .then((newAvatar) => {
+      setCurrentUser(newAvatar);
+      closeAllPopups(); 
+    })
+    .catch(console.error);  
   }
 
   function handleCardLike(card) {
@@ -92,8 +101,8 @@ function App() {
         <Header />
         <Main
           isEditProfilePopupOpen={handleEditProfileClick}
-          isAddPlacePopupOpen={handleEditAvatarClick}
-          isEditAvatarPopupOpen={handleAddPlaceClick}
+          isAddPlacePopupOpen={handleAddPlaceClick}
+          isEditAvatarPopupOpen={handleEditAvatarClick}
           isImagePopupOpen={handleCardClick}
           isCardLike={handleCardLike}
           handleCardDelete={handleCardDelete}
@@ -110,7 +119,7 @@ function App() {
           title="Новое место"
           name="add-element"
           buttonText="Создать"
-          isOpen={onEditAvatar}
+          isOpen={onAddPlace}
           onClose={closeAllPopups}
         >
           <label className="popup__label">
@@ -140,7 +149,7 @@ function App() {
         </PopupWithForm>
 
         {/* Popup 3 обновление аватара */}
-        <EditAvatarPopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
+        <EditAvatarPopup isOpen={onEditAvatar} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar}/>
   
         {/* Popup 4 удaление карточки */}
         <PopupWithForm title="" name="" buttonText="Да" children={<></>} />

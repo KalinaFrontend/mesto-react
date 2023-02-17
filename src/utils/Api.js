@@ -120,6 +120,7 @@ class Api {
           authorization: this._token,
           "Content-Type": "application/json",
         },
+        
         body: JSON.stringify(data),
       }
     ).then(this._checkResponse);
