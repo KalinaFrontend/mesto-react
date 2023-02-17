@@ -1,7 +1,10 @@
 import React from "react";
 import "../index.css";
 
-function PopupWithForm({ title, name, buttonText, isOpen, onClose, children }) {
+function PopupWithForm({ title, name, buttonText, isOpen, onClose, onSubmit, children }) {
+
+
+
   return (
       <div
         className={
@@ -17,7 +20,7 @@ function PopupWithForm({ title, name, buttonText, isOpen, onClose, children }) {
             onClick={onClose}
           ></button>
           <h2 className="popup__content-title">{title}</h2>
-          <form name="popup-form-profile" className="popup__form" noValidate>
+          <form name="popup-form-profile" className="popup__form" noValidate onSubmit={onSubmit}>
           {children}
           <button type="submit" className="popup__save-button ">
             {buttonText}

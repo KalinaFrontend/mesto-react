@@ -7,6 +7,7 @@ import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 import api from "../utils/Api";
 import EditProfilePopup from "./EditProfilePopup";
+import EditAvatarPopup from "./EditAvatarPopup";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -65,6 +66,15 @@ function App() {
     setSelectedCard(null);
   };
 
+  function handleUpdateUser(form) {
+    api.setUserInfo(form)
+    .then((newUserInfo) => {
+      setCurrentUser(newUserInfo);
+      closeAllPopups();
+    })
+    .catch(console.error);
+  }
+
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
     const isLiked = card.likes.some(i => i._id === currentUser._id);
@@ -93,7 +103,7 @@ function App() {
         <Footer />
 
         {/* Popup 1 редактирование профиля */}
-        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} /> 
+        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser}/> 
 
         {/* Popup 2 добавление фото */}
         <PopupWithForm
@@ -130,25 +140,8 @@ function App() {
         </PopupWithForm>
 
         {/* Popup 3 обновление аватара */}
-        <PopupWithForm
-          title="Обновить аватар"
-          name="update-avatar"
-          buttonText="Сохранить"
-          isOpen={onAddPlace}
-          onClose={closeAllPopups}
-        >
-          <label className="popup__label">
-            <input
-              id="avatar-input"
-              name="avatar"
-              type="url"
-              placeholder="Ссылка на картинку"
-              className="popup__input popup__input_type_avatar"
-              required
-            />
-            <span className="popup__input-error avatar-input-error"></span>
-          </label>
-        </PopupWithForm>
+        <EditAvatarPopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} />
+  
         {/* Popup 4 удaление карточки */}
         <PopupWithForm title="" name="" buttonText="Да" children={<></>} />
 
