@@ -23,7 +23,7 @@ function AddPlacePopup({isOpen, onClose, onUpdateCards}) {
       link: link,
     });
   }
-
+  
   return (
     <PopupWithForm
       title="Новое место"

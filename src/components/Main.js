@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import {CurrentUserContext} from '../contexts/CurrentUserContext';
 import "../index.css";
-import api from "../utils/Api";
 import Card from "./Card";
 
 function Main({
@@ -10,13 +9,12 @@ function Main({
   isEditAvatarPopupOpen,
   isImagePopupOpen,
   isCardLike,
+  isDeleteCard,
   cards,
   handleCardDelete,
 }) {
 
-  const currentUser = React.useContext(CurrentUserContext);
-  
-
+  const currentUser = useContext(CurrentUserContext);
 
   return (
     <main className="content">
