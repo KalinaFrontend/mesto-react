@@ -159,6 +159,7 @@ function App() {
           />
           {/* Popup 4 удaление карточки */}
           <DeleteCardPopup isOpen={onDeleteCard} onClose={closeAllPopups} isDeleteCard={handleCardDeletePopup}/>
+          {/* Popup 5 открытие карточки */}
           <ImagePopup card={selectedCard} onClose={closeAllPopups} />
         </div>
       </div>
