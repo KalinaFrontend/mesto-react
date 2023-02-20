@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import {CurrentUserContext} from '../contexts/CurrentUserContext';
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import "../index.css";
 import Card from "./Card";
 
@@ -13,7 +13,6 @@ function Main({
   cards,
   handleCardDelete,
 }) {
-
   const currentUser = useContext(CurrentUserContext);
 
   return (
@@ -52,7 +51,13 @@ function Main({
         <ul className="elements__items">
           {cards.map((card) => {
             return (
-              <Card key={card._id} card={card} onCardClick={isImagePopupOpen} onLikeClick={isCardLike} onCardDelete={handleCardDelete}/>
+              <Card
+                key={card._id}
+                card={card}
+                onCardClick={isImagePopupOpen}
+                onLikeClick={isCardLike}
+                onCardDelete={handleCardDelete}
+              />
             );
           })}
         </ul>

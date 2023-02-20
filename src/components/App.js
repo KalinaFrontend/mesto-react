@@ -29,9 +29,7 @@ function App() {
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
       });
-  }, []);
 
-  useEffect(() => {
     api
       .getUserInfo()
       .then((data) => {
@@ -48,23 +46,23 @@ function App() {
 
   const handleCardDelete = (_id) => {
     setCardDeleteId(_id);
-    CardDeletePopup();
-
-
-
-
-
+    deleteCardPopup();
   };
 
-  const handleCardDeletePopup = () => {
-    api.deleteCard(cardDeleteId);
-    const newCards = cards.filter((item) => item._id !== cardDeleteId);
-    setCards(newCards);
-  }
+  const handleDeleteCardPopup = () => {
+    api.deleteCard(cardDeleteId)
+    .then(()=> {
+      setCards((state) => state.filter((item) => item._id !== cardDeleteId));
+      closeAllPopups();
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`);
+    });
+  };
 
-  const CardDeletePopup = () => {
+  const deleteCardPopup = () => {
     setOnDeleteCard(true);
-  }
+  };
 
   const handleEditAvatarClick = () => {
     setOnEditAvatar(true);
@@ -120,7 +118,8 @@ function App() {
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
     api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
       setCards((state) => state.map((c) => (c._id === card._id ? newCard : c)));
-    });
+    })
+    .catch(console.error);
   }
 
   return (
@@ -135,7 +134,7 @@ function App() {
             isImagePopupOpen={handleCardClick}
             isCardLike={handleCardLike}
             handleCardDelete={handleCardDelete}
-            isDeleteCard={CardDeletePopup}
+            isDeleteCard={deleteCardPopup}
             cards={cards}
           />
           <Footer />
@@ -158,7 +157,11 @@ function App() {
             onUpdateAvatar={handleUpdateAvatar}
           />
           {/* Popup 4 удaление карточки */}
-          <DeleteCardPopup isOpen={onDeleteCard} onClose={closeAllPopups} isDeleteCard={handleCardDeletePopup}/>
+          <DeleteCardPopup
+            isOpen={onDeleteCard}
+            onClose={closeAllPopups}
+            isDeleteCard={handleDeleteCardPopup}
+          />
           {/* Popup 5 открытие карточки */}
           <ImagePopup card={selectedCard} onClose={closeAllPopups} />
         </div>

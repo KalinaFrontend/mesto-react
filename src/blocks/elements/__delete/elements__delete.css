@@ -9,9 +9,9 @@
   position: absolute;
   top: 20px;
   right: 20px;
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
 }
 
 .elements__delete:hover {
-  opacity: .6;
+  opacity: 0.6;
 }

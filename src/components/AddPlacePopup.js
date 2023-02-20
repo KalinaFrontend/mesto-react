@@ -1,21 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PopupWithForm from "./PopupWithForm";
 
-function AddPlacePopup({isOpen, onClose, onUpdateCards}) {
+function AddPlacePopup({ isOpen, onClose, onUpdateCards }) {
+  const [name, setName] = useState("");
+  const [link, setLink] = useState("");
 
-    const [name, setName] = useState('');
-    const [link, setLink] =useState('');
+  useEffect(() => {
+    setName("");
+    setLink("");
+  }, [isOpen]);
 
-    const handleChangeName = (e) => {
-      const text = e.target.value;
-      setName(text);
-    }
+  const handleChangeName = (e) => {
+    const text = e.target.value;
+    setName(text);
+  };
 
-    const handleChangeLink = (e) => {
-       const text = e.target.value;
-       setLink(text);
-    }
-  
+  const handleChangeLink = (e) => {
+    const text = e.target.value;
+    setLink(text);
+  };
+
   function handleSubmit(e) {
     e.preventDefault();
     onUpdateCards({
@@ -23,7 +27,7 @@ function AddPlacePopup({isOpen, onClose, onUpdateCards}) {
       link: link,
     });
   }
-  
+
   return (
     <PopupWithForm
       title="Новое место"

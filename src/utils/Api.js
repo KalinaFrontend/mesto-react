@@ -1,4 +1,3 @@
-import React from "react";
 import { cohort, token } from "./constants";
 
 class Api {
@@ -100,15 +99,16 @@ class Api {
   }
 
   changeLikeCardStatus(cardId, isLiked) {
-    
-    return fetch(`https://mesto.nomoreparties.co/v1/${this._cohort}/cards/${cardId}/likes`, {
-      method: `${!isLiked ? 'DELETE' : 'PUT'}`,
-      headers: {
-        authorization: this._token,
-        "Content-Type": "application/json",
-      },
-    })
-      .then(this._checkResponse);
+    return fetch(
+      `https://mesto.nomoreparties.co/v1/${this._cohort}/cards/${cardId}/likes`,
+      {
+        method: `${!isLiked ? "DELETE" : "PUT"}`,
+        headers: {
+          authorization: this._token,
+          "Content-Type": "application/json",
+        },
+      }
+    ).then(this._checkResponse);
   }
 
   updateAvatar(data) {
@@ -120,7 +120,7 @@ class Api {
           authorization: this._token,
           "Content-Type": "application/json",
         },
-        
+
         body: JSON.stringify(data),
       }
     ).then(this._checkResponse);
