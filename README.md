@@ -31,7 +31,7 @@
 
 Клонировать репозиторий:
 
-    git clone https://github.com/ia-stepanov/mesto-react.git
+    git clone https://github.com/KalinaFrontend/mesto-react.git
 
 Установить зависимости:
 
