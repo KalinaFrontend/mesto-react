@@ -3,18 +3,44 @@
 
 Учебный проект для [Яндекс.Практикум](https://practicum.yandex.ru/ "Сайт Яндекс.Практикум")
 
-### Стек технологий:
-* HTML 5
-* CSS 3
-* JavaScript (ES 6)
-* React JS
-* Create React App
-* хуки useState и useEffect
-* ООП
-* БЭМ (Nested)
-* Webpack
-* git/github
-* Figma 
+## Стек технологий:
+
+- HTML5;
+- CSS3:
+  - Flexbox;
+  - Grid Layout;
+  - Positioning;
+  - Adaptive UI;
+  - Media Queries;
+- Методология БЭМ;
+- Фйловая структура Nested БЭМ;
+- JavaScript:
+  - Стиль CamelCase;
+  - Объектно-ориентированное программирование;
+  - Промисы (Promise);
+  - Асинхронность и оптимизация;
+  - API (Application Programming Interface);
+- Webpack;
+- React JS:
+  - Create React App;
+  - Портирование разметки в JSX;
+  - Функциональные компоненты;
+  - Хуки.
+
+## Установка и запуск приложения:
+
+Клонировать репозиторий:
+
+    git clone https://github.com/ia-stepanov/mesto-react.git
+
+Установить зависимости:
+
+    npm install
+
+Запустить приложение:
+
+    npm run start
+
 
 Этот проект был переписан на React.js с проекта [**Mesto**](https://github.com/KalinaFrontend/Mesto).
 ------
